@@ -1,0 +1,56 @@
+{
+    "name": "spuniter/php-uniter-package",
+    "description": "PhpUniter integration package. Assistant for automatic test generation. Commands for registration user and for sending yours class to generate test for it. Class for converting all methods to public on load",
+    "keywords": [
+        "php-uniter",
+        "php-uniter-laravel"
+    ],
+    "homepage": "https://github.com/spuniter/php-uniter-package.git",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Eduard Fomin",
+            "email": "eduard.fomin@uniter1.tech",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": ">=6.0",
+        "laravel/framework": ">=6.18.8"
+
+    },
+    "require-dev": {
+        "mockery/mockery": ">=1.0",
+        "phpunit/phpunit": ">=8.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpUniter\\PackageLaravel\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpUniter\\PackageLaravel\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PhpUniter\\PackageLaravel\\PhpUniterPackageLaravelServiceProvider"
+            ],
+            "aliases": {
+                "PhpUniterPackageLaravel": "PhpUniter\\PackageLaravel\\PhpUniterPackageLaravelFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

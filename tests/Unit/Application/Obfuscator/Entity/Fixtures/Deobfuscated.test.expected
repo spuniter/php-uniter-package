@@ -1,0 +1,47 @@
+<?php
+namespace Tests\Unit\Foo\Bar\Application\Barbar\Entity;
+
+use Mockery\Adapter\Phpunit\MockeryTestCase;
+class FooTest extends MockeryTestCase
+{
+    /**
+    * @uniter_chain_wrong_type Unknown type for injection chain. Context: class: Foo, method: bar, injection: self::FIRST
+    * @uniter_chain_wrong_type Unknown type for injection chain. Context: class: Foo, method: bar, injection: foo("arg1", "arg2", 10)
+    */
+    public function test_bar()
+    {
+        $privateMethodClass = ClassHelper::makeAllMethodsPublic('Foo\Bar\Application\Barbar\Entity\\Foo');
+        $selfObjectFoo = Mockery::mock($privateMethodClass)->makePartial();
+        $this->assertEquals('PLACEHOLDER_ASSERT_RETURN', $selfObjectFoo->bar('PLACEHOLDER_ASSERT_v', 'PLACEHOLDER_ASSERT_w'));
+    }
+    /**
+    * @uniter_chain_wrong_type Unknown type for injection chain. Context: class: Foo, method: fOne, injection: explode(",", $x)
+    * @uniter_chain_wrong_type Unknown type for injection chain. Context: class: Foo, method: fOne, injection: fTwo($argA, $argB, $argC, fThree($argD, $argE, $argF, $argG, $argH))
+    * @uniter_chain_wrong_type Unknown type for injection chain. Context: class: Foo, method: fOne, injection: count($colors)
+    */
+    public function test_fOne()
+    {
+        $privateMethodClass = ClassHelper::makeAllMethodsPublic('Foo\Bar\Application\Barbar\Entity\\Foo');
+        $selfObjectFoo = Mockery::mock($privateMethodClass)->makePartial();
+        $this->assertEquals('PLACEHOLDER_ASSERT_RETURN', $selfObjectFoo->fOne('PLACEHOLDER_ASSERT_argA', 'PLACEHOLDER_ASSERT_argB', 'PLACEHOLDER_ASSERT_argC', 'PLACEHOLDER_ASSERT_argD', 'PLACEHOLDER_ASSERT_argE', 'PLACEHOLDER_ASSERT_argF', 'PLACEHOLDER_ASSERT_argG', 'PLACEHOLDER_ASSERT_argH'));
+    }
+    /**
+    * @uniter_chain_wrong_type Unknown type for injection chain. Context: class: Foo, method: fTwo, injection: $foo->one("a", "b")->two("c", "d", "e")->three("fg")->four()
+    * @uniter_chain_wrong_type Unknown type for injection chain. Context: class: Foo, method: fTwo, injection: a()->b()->c()
+    */
+    public function test_fTwo()
+    {
+        $privateMethodClass = ClassHelper::makeAllMethodsPublic('Foo\Bar\Application\Barbar\Entity\\Foo');
+        $selfObjectFoo = Mockery::mock($privateMethodClass)->makePartial();
+        $this->assertEquals('PLACEHOLDER_ASSERT_RETURN', $selfObjectFoo->fTwo('PLACEHOLDER_ASSERT_strA', 'PLACEHOLDER_ASSERT_strB', 'PLACEHOLDER_ASSERT_strC', 'PLACEHOLDER_ASSERT_strD'));
+    }
+    /**
+    * @uniter_chain_wrong_type Unknown type for injection chain. Context: class: Foo, method: fThree, injection: foo()
+    */
+    public function test_fThree()
+    {
+        $privateMethodClass = ClassHelper::makeAllMethodsPublic('Foo\Bar\Application\Barbar\Entity\\Foo');
+        $selfObjectFoo = Mockery::mock($privateMethodClass)->makePartial();
+        $this->assertEquals('PLACEHOLDER_ASSERT_RETURN', $selfObjectFoo->fThree('PLACEHOLDER_ASSERT_strA', 'PLACEHOLDER_ASSERT_strB', 'PLACEHOLDER_ASSERT_strC', 'PLACEHOLDER_ASSERT_strD', 'PLACEHOLDER_ASSERT_strE'));
+    }
+}
