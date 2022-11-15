@@ -4,6 +4,7 @@ namespace PhpUniter\PackageLaravel\Infrastructure\Repository;
 
 use PhpUniter\PackageLaravel\Application\File\Exception\DirectoryPathWrong;
 use PhpUniter\PackageLaravel\Application\File\Exception\FileNotAccessed;
+use PhpUniter\PackageLaravel\Application\Generation\Exception\TestNotCreated;
 use PhpUniter\PackageLaravel\Application\PhpUniter\Entity\PhpUnitTest;
 
 class UnitTestRepository implements UnitTestRepositoryInterface
@@ -20,6 +21,7 @@ class UnitTestRepository implements UnitTestRepositoryInterface
      *
      * @throws DirectoryPathWrong
      * @throws FileNotAccessed
+     * @throws TestNotCreated
      */
     public function saveOne(PhpUnitTest $unitTest, string $relativePath, string $className): int
     {
@@ -32,8 +34,18 @@ class UnitTestRepository implements UnitTestRepositoryInterface
             throw new DirectoryPathWrong("Directory $testDir cannot be created");
         }
 
+        if (!is_writable($testDir)) {
+            throw new DirectoryPathWrong("Directory $testDir is not writable");
+        }
+
         $unitTest->setPathToTest($pathToTest);
-        if ($size = file_put_contents($pathToTest, $unitTest->getFinalUnitTest())) {
+        $unitTestText = $unitTest->getFinalUnitTest();
+
+        if (empty($unitTestText)) {
+            throw new TestNotCreated('Empty test created');
+        }
+
+        if ($size = file_put_contents($pathToTest, $unitTestText)) {
             return $size;
         }
 

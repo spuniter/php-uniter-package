@@ -4,6 +4,7 @@ namespace PhpUniter\PackageLaravel\Application;
 
 use PhpUniter\PackageLaravel\Application\File\Entity\LocalFile;
 use PhpUniter\PackageLaravel\Application\File\Exception\ObfucsatorNull;
+use PhpUniter\PackageLaravel\Application\Generation\Exception\TestNotCreated;
 use PhpUniter\PackageLaravel\Application\Generation\NamespaceGenerator;
 use PhpUniter\PackageLaravel\Application\Obfuscator\Entity\ObfuscatedClass;
 use PhpUniter\PackageLaravel\Application\Obfuscator\KeyGenerator\ObfuscateNameMaker;
@@ -38,6 +39,7 @@ class PhpUnitService
     /**
      * @throws File\Exception\DirectoryPathWrong
      * @throws File\Exception\FileNotAccessed
+     * @throws TestNotCreated
      * @throws \PhpUniter\PackageLaravel\Application\Obfuscator\Exception\ObfuscationFailed
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \PhpUniter\PackageLaravel\Infrastructure\Exception\PhpUnitTestInaccessible
